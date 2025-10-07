@@ -1,10 +1,15 @@
 import React from "react";
 import FaultyTerminal from "./components/FaultyTerminal";
+import Navbar from "./components/Navbar";
+// Correcting the import path to match our previous setup
+import Homepage from "./pages/Homepage";
+
 const App = () => {
   return (
-    <div>
-      <div className="w-screen h-screen relative bg-black ">
-        {/* The tint prop for color is still the same */}
+    // Main app container. It's the parent for our layers.
+    <div className="relative w-screen h-screen bg-black overflow-hidden">
+      {/* Layer 1: Background Effect. Positioned to fill the entire container. */}
+      <div className="absolute inset-0 z-0">
         <FaultyTerminal
           tint="#00ff00"
           scale={1.5}
@@ -24,6 +29,12 @@ const App = () => {
           pageLoadAnimation={false}
           brightness={0.5}
         />
+      </div>
+
+      {/* Layer 2: Main Content. Sits on top of the background. */}
+      <div className="relative z-10">
+        <Navbar />
+        <Homepage />
       </div>
     </div>
   );
